@@ -24,7 +24,7 @@ app.get('/home', (req, res) => {
 })
 
 /** 4) Serve static assets  */
-
+app.use( express.static( __dirname + '/public/'))
 
 /** 5) serve JSON on a specific route */
 
