@@ -1,61 +1,35 @@
 const express = require('express');
-const app = express()
 
+const app = express();
+const hostName = 'localhost';
 const port = 3000;
 
-
-// --> 7)  Mount the Logger middleware here
-
-
-// --> 11)  Mount the body-parser middleware  here
-
-
-/** 1) Meet the node console. */
-console.log('Hello World')
-
-/** 2) A first working Express Server */
+// creat a simple server, send response back to home dir.
 app.get('/', (req, res) => {
-    res.send('Hello ExpresssssEEEE')
+    res.send('Hello from Express');
 })
 
-/** 3) Serve an HTML file */
+// Serve an HTML file
 app.get('/home', (req, res) => {
-    res.sendFile( __dirname + "/index.html")
+    res.sendFile(__dirname + '/index.html');
+});
+
+// serve static files to the app
+// when we have to serve static files, we have to use a express midleware called, static
+/*==================================
+    4) serve static assets
+===================================*/
+// serve anyfile that is located in the public dir. to the web server
+app.use( express.static(__dirname + '/public/'))
+
+/*==================================
+    5) serve JSON on a specific route
+===================================*/
+app.get('/api', (req, res) => {
+    res.json({name: 'Darbaz Ali'})
 })
 
-/** 4) Serve static assets  */
-app.use('/public/', express.static( __dirname + '/public/'))
-
-/** 5) serve JSON on a specific route */
-// app.use('/api/', express.static(__dirname + "/api/"))
-app.get('/json', (req, res) => {
-    res.json({"message": "Hello json"})
-})
-
-/** 6) Use the .env file to configure the app */
- 
- 
-/** 7) Root-level Middleware - A logger */
-//  place it before all the routes !
-
-
-/** 8) Chaining middleware. A Time server */
-
-
-/** 9)  Get input from client - Route parameters */
-
-
-/** 10) Get input from client - Query parameters */
-// /name?first=<firstname>&last=<lastname>
-
-  
-/** 11) Get ready for POST Requests - the `body-parser` */
-// place it before all the routes !
-
-
-/** 12) Get data form POST  */
-
-
-app.listen( port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+// listen for requestes at http://localhost:3000
+app.listen(port, hostName, () => {
+    console.log(`Server running at http://${hostName}:${port}`)
 })
