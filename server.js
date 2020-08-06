@@ -8,6 +8,14 @@ const port = 3000;
 
 // process.env.MESSAGE_STYEL='uppercase';
 
+/*==================================
+    7) Implement a Root-Level Request Logger Middleware
+===================================*/
+app.get('/api', (req, res, next) => {
+    console.log(`${req.method} ${req.path} - ${req.ip}`);
+    next();
+})
+
 // creat a simple server, send response back to home dir.
 app.get('/', (req, res) => {
     res.send('Hello from Express');
@@ -45,6 +53,11 @@ app.get('/api', (req, res) => {
         res.json({'message': 'hello json'})
     }
 })
+
+
+
+
+
 
 // listen for requestes at http://localhost:3000
 app.listen(port, hostName, () => {
