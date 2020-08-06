@@ -72,6 +72,15 @@ app.get('/profile/:id', (req, res) => {
 })
 
 
+/** 10) Get input from client - Query parameters */
+// /name?first=<firstname>&last=<lastname>
+app.get('/name', (req, res) => {
+    let first = req.query.first;
+    let last = req.query.last;
+
+    res.json({"name": `${first} ${last}`})
+})
+
 
 
 // listen for requestes at http://localhost:3000
