@@ -16,6 +16,7 @@ app.get('/api', (req, res, next) => {
     next();
 })
 
+
 // creat a simple server, send response back to home dir.
 app.get('/', (req, res) => {
     res.send('Hello from Express');
@@ -54,7 +55,21 @@ app.get('/api', (req, res) => {
     }
 })
 
+/** 8) Chaining middleware. A Time server */
+app.get('/now', (req, res, next) => {
+    req.time = new Date().toString();
+    next();
+}, (req, res, next) => {
+    res.json({"time": req.time})
+    }
+)
 
+
+
+/** 9)  Get input from client - Route parameters */
+app.get('/profile/:id', (req, res) => {
+    res.send(`You requested to see a profile with id: ${req.params.id}`)
+})
 
 
 
