@@ -68,6 +68,12 @@ app.get('/now', (req, res, next) => {
     }
 )
 
+/** 12) Get data form POST  */
+app.post('/name', (req, res) => {
+    let first = req.body.first
+    let last = req.body.last;
+    res.json({"name": `${first} ${last}`})
+})
 
 
 /** 9)  Get input from client - Route parameters */
