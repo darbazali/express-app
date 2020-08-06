@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv')
+const bodyParser = require('body-parser')
 dotenv.config();
 
 const app = express();
@@ -15,6 +16,9 @@ app.get('/api', (req, res, next) => {
     console.log(`${req.method} ${req.path} - ${req.ip}`);
     next();
 })
+
+// --> 11)  Mount the body-parser middleware  here
+app.use(bodyParser.urlencoded({extended: false}))
 
 
 // creat a simple server, send response back to home dir.
