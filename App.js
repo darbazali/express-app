@@ -20,9 +20,17 @@ app.get('/', (req, res) => {
 })
 
 /*================================== 
-    3. Serve Static assets
+    4. Serve Static assets
 ==================================*/
 app.use(express.static(__dirname + '/public/'))
+
+
+/*================================== 
+    5. Serve JSON on a specific route
+==================================*/
+app.get('/api', (req, res) => {
+    res.json({'message': 'Hello JSON'})
+})
 
 // setup server on port and hostname
 app.listen(port, hostname, () => {
