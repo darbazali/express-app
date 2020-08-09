@@ -72,7 +72,15 @@ app.get('/now', (req, res, next) => {
 )
 
 
-
+/*================================== 
+    9. Get route parameter input
+==================================*/
+app.get('/user/:userid/book/:bookid', (req, res) => {
+    res.json({
+        "userID": req.params.userid,
+        "bookID": req.params.bookid
+    })
+})
 
 
 
