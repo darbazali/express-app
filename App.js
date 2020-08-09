@@ -1,10 +1,17 @@
 const dotevn = require('dotenv');
 const express = require('express')
+const bodyParser = require('body-parser');
+
 const app = express();
 const hostname = 'localhost';
 const port = 3000;
 
 dotevn.config();
+
+/*================================== 
+    11. Mount the body-parser middleware 
+==================================*/
+app.use(bodyParser.urlencoded({extended:false}))
 
 /*================================== 
     2. setup a server to listn for home url
@@ -92,6 +99,14 @@ app.get('/name', (req, res) => {
 })
 
 
+/*================================== 
+    12. Get Data from POST request
+==================================*/
+app.post('/name', (req, res) => {
+    let first = req.body.first;
+    let last = req.body.last;
+    res.json({"name": `${first} ${last}`})
+})
 
 // setup server on port and hostname
 app.listen(port, hostname, () => {
