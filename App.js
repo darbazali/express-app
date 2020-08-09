@@ -1,7 +1,10 @@
+const dotevn = require('dotenv');
 const express = require('express')
 const app = express();
 const hostname = 'localhost';
 const port = 3000;
+
+dotevn.config();
 
 /*================================== 
     2. setup a server to listn for home url
@@ -30,6 +33,19 @@ app.use(express.static(__dirname + '/public/'))
 ==================================*/
 app.get('/api', (req, res) => {
     res.json({'message': 'Hello JSON'})
+})
+
+/*================================== 
+    6. Use .env file
+==================================*/
+
+app.get('/api/up', (req, res) => {
+    const msgStyle = process.env.MSG_STYLE;
+    if ( msgStyle === 'uppercase') {
+        res.json({'message': 'hello json'.toUpperCase()})
+    } else {
+        res.json({'message': 'hello json'})
+    } 
 })
 
 // setup server on port and hostname
