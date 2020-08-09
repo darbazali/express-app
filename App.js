@@ -60,6 +60,25 @@ app.get('/ip', (req, res, next) => {
     next();
 })
 
+/*================================== 
+    8. Chain Middleware
+==================================*/
+app.get('/now', (req, res, next) => {
+    req.time = new Date().toString();
+    next();
+}, (req, res) => {
+    res.send(req.time)
+}
+)
+
+
+
+
+
+
+
+
+
 // setup server on port and hostname
 app.listen(port, hostname, () => {
     console.log(`Server is running on http://${hostname}:${port}`);
