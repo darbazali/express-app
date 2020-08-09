@@ -48,6 +48,18 @@ app.get('/api/up', (req, res) => {
     } 
 })
 
+/*================================== 
+    7. Impelemnt root-level request loger midlleware
+==================================*/
+app.get('/ip', (req, res, next) => {
+    res.json({
+        "method": req.method,
+        "path": req.path,
+        "ip": req.ip
+    })
+    next();
+})
+
 // setup server on port and hostname
 app.listen(port, hostname, () => {
     console.log(`Server is running on http://${hostname}:${port}`);
