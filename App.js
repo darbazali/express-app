@@ -82,8 +82,14 @@ app.get('/user/:userid/book/:bookid', (req, res) => {
     })
 })
 
-
-
+/*================================== 
+    10. Get query params
+==================================*/
+app.get('/name', (req, res) => {
+    res.json({
+        "name": `${req.query.first} ${req.query.last}`
+    })
+})
 
 
 
